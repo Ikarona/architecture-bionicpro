@@ -21,7 +21,14 @@ const ReportPage: React.FC = () => {
           'Authorization': `Bearer ${keycloak.token}`
         }
       });
-
+      // Логируем статус и заголовки
+      console.log('GET /reports status:', response.status);
+      console.log(
+                'GET /reports headers:',
+                Array.from(response.headers.entries())
+              );
+      const data = await response.json();
+      console.log('GET /reports body:', data);
       
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
